@@ -6,7 +6,7 @@
 #   20061120   Hanns-Konrad Unger   help: and TARGET=atmega48 added
 #
 
-
+Soft=${GitHub}
 
 TARGET=atmega8
 HFUSE=0xc9
@@ -14,7 +14,6 @@ LFUSE=0x9f
 
 
 ISP=usbasp
-Soft=/home/mkkopter/soft
 
 help:
 	@echo "Usage: make                same as make help"
@@ -33,7 +32,7 @@ help:
 	@echo "       ISP=${ISP}"
 	@echo "       PORT=${PORT}"
 
-COMPILE = avr-gcc -Wall -O2 -I $(Soft)/avr-libc -I. -mmcu=$(TARGET) # -DDEBUG_LEVEL=2
+COMPILE = avr-gcc -Wall -O2 -I $(Soft)/avr-libc -I. -mmcu=$(TARGET) -DF_CPU=12000000L
 
 OBJECTS = main.o uart.o 
 

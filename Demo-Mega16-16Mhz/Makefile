@@ -7,6 +7,8 @@
 #
 
 
+Soft=${GitHub}
+
 
 TARGET=atmega16
 HFUSE=0xc9

@@ -93,10 +93,6 @@ int main()
 
   #ifdef Debug_lib
   uart_puts("Hello,world!\r\n");
-  uart_putchar('a');
-  uart_putchar('a');
-  uart_putchar('a');
-  uart_putchar('a');
   #else
   put_char('a');
   put_char('b');

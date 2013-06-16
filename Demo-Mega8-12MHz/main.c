@@ -4,13 +4,7 @@
 // Target : M8
 // Crystal: 12.000Mhz
 
-#define F_CPU 12000000L
-
-#include <macros.h>
-#include <stdio.h>
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <util/delay.h>
+#include <cpu.h>
 #include <uart.h>
 
 
@@ -38,9 +32,7 @@ void init_uart(void)
 
 void init_uart2()
 {
- unsigned int baudrate;
- baudrate = UART_BAUD_SELECT(9600,F_CPU);
- uart_init(baudrate);
+ uart_init(9600);
 }
 
 void init_devices(void)
@@ -71,12 +63,10 @@ int main(void)
   
   PORTD = 0x00;
   uart_puts("/*****************************/\r\n");
-  uart_printf("Build Time : %s %s\r\n\r\n",__DATE__,__TIME__);
 
   c='a';
   while(1)
   {
-    //c = getchar();
     c = uart_getc();
     uart_putc(c);
   }

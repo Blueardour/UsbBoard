@@ -14,7 +14,7 @@ LFUSE=0x94
 
 
 ISP=usbasp
-Soft=/home/mkkopter/soft
+Soft=${GitHub}
 
 help:
 	@echo "Usage: make                same as make help"
@@ -33,7 +33,7 @@ help:
 	@echo "       ISP=${ISP}"
 	@echo "       PORT=${PORT}"
 
-COMPILE = avr-gcc -Wall -O2 -I $(Soft)/avr-libc -I. -mmcu=$(TARGET) # -DDEBUG_LEVEL=2
+COMPILE = avr-gcc -Wall -O2 -I $(Soft)/avr-libc -I. -mmcu=$(TARGET) -DF_CPU=8000000L
 
 OBJECTS = main.o uart.o 
 

@@ -1,0 +1,5 @@
+
+
+1.when the mini-SD is pushed out, and the CS, SCK, MISO is high,
+  the V of the ASM117-3.3V output become 4.0V, seem B -->0.7--> E.
+

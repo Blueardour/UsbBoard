@@ -73,10 +73,16 @@ main.bin:	$(OBJECTS)
 main.hex:	main.bin
 	rm -f main.hex main.eep.hex
 	avr-objcopy -j .text -j .data -O ihex main.bin main.hex
-#	./checksize main.bin
-# do the checksize script as our last action to allow successful compilation
-# on Windows with WinAVR where the Unix commands will fail.
 
+poll.hex:	poll.bin
+	rm -f poll.hex poll.eep.hex
+	avr-objcopy -j .text -j .data -O ihex poll.bin poll.hex
+
+poll.bin: poll.o
+	$(COMPILE) -o poll.bin poll.o -Wl,-Map,main.map
+
+poll.o:	poll.c
+	$(COMPILE) -c poll.c -o poll.o
 
 disasm:	main.bin
 	avr-objdump -d main.bin
@@ -86,6 +92,9 @@ cpp:
 
 flash:
 	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -U flash:w:main.hex
+
+poll_flash:
+	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -U flash:w:poll.hex
 
 fuses:
 	avrdude -c ${ISP} -p ${TARGET} -P ${PORT} -u -U hfuse:w:$(HFUSE):m -U lfuse:w:$(LFUSE):m

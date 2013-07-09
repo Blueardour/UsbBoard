@@ -12,10 +12,6 @@
 #include <util/delay.h>
 #include <avr/wdt.h>
 
-#ifndef BIT
-#define BIT _BV
-#endif
-
 void board_test(int tick)
 {
   char flag;
